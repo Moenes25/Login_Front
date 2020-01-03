@@ -1,24 +1,18 @@
 import React, { Component } from 'react';
-import { get } from 'lodash';
 import { Button,CardImg , Card, CardBody, CardGroup, Col,
           Container, Form, Input, InputGroup,
             InputGroupAddon, InputGroupText, Row ,Alert} from 'reactstrap';
-import gql from 'graphql-tag';
 import { Mutation } from "react-apollo";
-import './App.css'
-import barac from './barac.png'
+import '../App.css'
+import barac from '../barac.png'
+import LOGIN_MUTATION from '../graphql/mutation'
 
-const LOGIN_MUTATION = gql`
-mutation($email: String!, $password: String!){ 
- apollome: login(email:$email password:$password){_id jwt }
-}
-`;
 class Login extends Component {
   constructor(props){
     super(props)
 
     this.state = {
-      email:"",
+      username:"",
       password:"",
       visible:false
     }
@@ -31,7 +25,7 @@ class Login extends Component {
     });
   }
   render() {
-    const { password, email,visible} = this.state
+    const { password, username} = this.state
     return ( 
       <div className="flex-row align-items-center py-lg-xl">
         
@@ -44,7 +38,7 @@ class Login extends Component {
                 <Card className="p-4">
                   <CardImg    src={barac} top width="50%"  className=" avatar-lg rounded-circle" alt="barac logo"/>
                   <CardBody>
-                  <Mutation mutation={LOGIN_MUTATION} variables={{ email, password }}>
+                  <Mutation mutation={LOGIN_MUTATION} variables={{ username, password }}>
                   {(loginUser, { loading, error ,data}) => {
                     if (loading) return 'Loading...'; 
                     if(error)console.log(error.message)
@@ -70,7 +64,7 @@ class Login extends Component {
                             <i className="icon-user"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="email"  placeholder="Email"  onChange={e => this.setState({ email: e.target.value })} required/>
+                        <Input type="email"  placeholder="Email"  onChange={e => this.setState({ username: e.target.value })} required/>
                       </InputGroup>
                       <InputGroup className="mb-4">
                         <InputGroupAddon addonType="prepend">
