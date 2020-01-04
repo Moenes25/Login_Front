@@ -7,7 +7,7 @@ import { HttpLink } from "apollo-link-http";
 import ApolloClient from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { setContext } from 'apollo-link-context';
-import * as serviceWorker from './serviceWorker';
+
 
 
 
@@ -38,4 +38,4 @@ ReactDOM.render(
 </ApolloProvider>, document.getElementById('root'));
 
 
-serviceWorker.unregister();
+
