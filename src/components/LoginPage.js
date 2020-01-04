@@ -17,6 +17,9 @@ class Login extends Component {
       visible:false
     }
   }
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  }
   onShowAlert = ()=>{
     this.setState({visible:true},()=>{
       setTimeout(()=>{
@@ -64,7 +67,7 @@ class Login extends Component {
                             <i className="icon-user"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="email"  placeholder="Email"  onChange={e => this.setState({ username: e.target.value })} required/>
+                        <Input type="email"  placeholder="Email"  onChange={e => this.handleChange} required/>
                       </InputGroup>
                       <InputGroup className="mb-4">
                         <InputGroupAddon addonType="prepend">
@@ -72,7 +75,7 @@ class Login extends Component {
                             <i className="nc-bag"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="password" placeholder="Password" autoComplete="current-password" onChange={e => this.setState({ password: e.target.value })} required/>
+                        <Input type="password" placeholder="Password" autoComplete="current-password" onChange={e => this.handleChange} required/>
                       </InputGroup>
                       
                       <Row>
